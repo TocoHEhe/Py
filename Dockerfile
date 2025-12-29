@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# Cài đặt các thư viện cần thiết để chạy Chrome
+# Cài đặt Google Chrome bằng phương pháp gpg keyring mới
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . .
 
-# Cài đặt thư viện Python
+# Cài đặt thư viện Python tối giản
 RUN pip install --no-cache-dir flask requests selenium gunicorn
 
-# Chạy bot bằng file main.py (Nhớ đổi tên app.py thành main.py nhé)
+# Khởi chạy bot
 CMD ["python", "main.py"]
