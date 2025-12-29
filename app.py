@@ -111,11 +111,12 @@ def webhook():
                         send_message(sender_id, f"🔄 Đang xử lý ID {ff_id}... Chờ 30-60 giây nhé!")
                         threading.Thread(target=perform_unlock, args=(ff_id, sender_id)).start()
                     else:
-                        send_message(sender_id, "Cú pháp: /unlock [UID]\nVí dụ: /unlock 12345678")
+                        send_message(sender_id, "🤦‍♀️Cú pháp: /unlock [UID]😂😒\n🎉Ví dụ: /unlock 134")
     return "OK", 200
 
 if __name__ == '__main__':
     # Render cấp cổng PORT qua biến môi trường
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
+
 
