@@ -3,7 +3,6 @@ set -o errexit
 
 pip install -r requirements.txt
 
-# Tải và cài đặt Chrome vào thư mục dự án trên Render
 STORAGE_DIR=/opt/render/project/.render/chrome
 if [ ! -d "$STORAGE_DIR" ]; then
   mkdir -p $STORAGE_DIR
