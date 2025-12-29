@@ -52,19 +52,24 @@ def perform_unlock(ff_id, recipient_id):
         driver = webdriver.Chrome(options=options)
         driver.get('https://unlockffbeta.com/')
         
+        # Tăng thời gian chờ lên 45s
         wait = WebDriverWait(driver, 45)
         
-        # Nhập UID
-        id_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input")))
-        id_input.clear()
+        # --- SỬA LỖI Ở ĐÂY ---
+        # Thay vì chỉ tìm "presence", ta đợi đến khi ô input thực sự bấm vào được
+        id_input = wait.until(EC.element_to_be_clickable((By.XPATH, "//input")))
+        
+        # Dùng Javascript để xóa và nhập (Mạnh hơn cách nhập thường, tránh lỗi invalid state)
+        driver.execute_script("arguments[0].value = '';", id_input)
         id_input.send_keys(ff_id)
+        # ---------------------
         
         # Click nút Unlock
         unlock_btn = wait.until(EC.element_to_be_clickable((By.XPATH, 
             "//button[contains(text(), 'Unlock without Discord') or contains(text(), 'Unlock for 2 Hours')]")))
-        unlock_btn.click()
+        driver.execute_script("arguments[0].click();", unlock_btn) # Dùng JS click cho chắc ăn
         
-        # Đợi kết quả
+        # Đợi kết quả 100%
         try:
             wait.until(EC.text_to_be_present_in_element((By.XPATH, "//body"), "100%"), timeout=60)
             result = f"✅ Unlock thành công ID {ff_id}!\n\nĐã mở khóa tạm thời 2 giờ.\nHết hạn hãy gửi lại lệnh nhé bro! 🚀"
@@ -75,11 +80,10 @@ def perform_unlock(ff_id, recipient_id):
         
     except Exception as e:
         app.logger.error(f"Lỗi Selenium: {str(e)}")
-        send_message(recipient_id, "❌ Hệ thống bận, vui lòng thử lại sau!")
+        send_message(recipient_id, "❌ Lỗi hệ thống: Web đang quá tải hoặc ID bị kẹt. Thử lại sau 1 phút!")
     finally:
         if driver:
             driver.quit()
-
 @app.route('/', methods=['GET'])
 def verify():
     # Lấy tham số xác thực từ Meta
@@ -118,5 +122,6 @@ if __name__ == '__main__':
     # Render cấp cổng PORT qua biến môi trường
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
+
 
 
