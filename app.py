@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 
 # --- THÔNG TIN CẤU HÌNH ---
 # Lấy từ Environment Variables trên Render
-PAGE_ACCESS_TOKEN = os.environ.get('EAARFcXJLW0sBQcqnt5qFR1ATantb8g8ZC8xilTpPD2HHKUTtkj1GeW09hgFb5xzbsEJ6P3b3eCrvxWZBO9yE8qi3c6gMVD9Oh1h3Gbwu1jkjGB5EFKosiO2DdXZA30yYeuIZCb3q9G5XDjPKpu3u62NCjJFJVYFnhy26Phq9dG0rgAuINP3dLnzwPSluv4ZBo7TdajwZDZD')
+PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', 'my_secret_token_123')
 GRAPH_API_URL = 'https://graph.facebook.com/v20.0/me/messages'
 
@@ -123,4 +123,5 @@ def webhook():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
+
 
