@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Lấy cấu hình từ Environment Variables
 PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
-VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', 'my_secret_token_123')
+VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', 'tocolate1104')
 
 def send_message(recipient_id, message_text):
     if not PAGE_ACCESS_TOKEN:
@@ -130,3 +130,4 @@ def webhook():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+
