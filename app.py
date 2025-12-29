@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 
 # --- THÔNG TIN CẤU HÌNH ---
 # Nên thiết lập trong Environment Variables trên Render
-PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN', 'DÁN_TOKEN_CỦA_BẠN_VÀO_ĐÂY')
+PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN', 'EAARFcXJLW0sBQcRahDcP8zME2VsTOMDTnOb8nTMYEp8VIGn8yBR2YIwfRhlL4ih0UOPAPNnB7VRcyZAHGrni9IyTq6ey4cYeQJJHJFMhI6iztc25UDTZA95liSd92FmKfwYrtd18RkayAUtNykbBiZAB7fbiKOgBZCwxYvVA000IzqQOnbceVp6eUKafZCuqTPO1zYwZDZD')
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', 'my_secret_token_123')
 GRAPH_API_URL = 'https://graph.facebook.com/v20.0/me/messages'
 
@@ -118,3 +118,4 @@ if __name__ == '__main__':
     # Render cấp cổng PORT qua biến môi trường
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
+
